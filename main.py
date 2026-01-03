@@ -14,11 +14,17 @@ def read_data(filename):
         list: le contenu du fichier (1 list par ligne)
     """
     l = []
+    with open(filename, mode = 'r', encoding='utf8') as f:
+        lines = f.readlines()
+        for line in lines:
+            cleaned_line = line.strip()
+            elements = cleaned_line.split(';')
+            int_list = [int(i) for i in elements]
+            l.append(int_list)
     return l
 
 def get_list_k(data, k):
-    l = []
-    return l
+    return data[k]
 
 def get_first(l):
     return None
@@ -41,11 +47,11 @@ def get_sum(l):
 
 def main():
     pass
-    # data = read_data(FILENAME)
-    # for i, l in enumerate(data):
-    #     print(i, l)
-    # k = 37
-    # print(k, get_list_k(data, 37))
+    data = read_data(FILENAME)
+    for i, l in enumerate(data):
+        print(i, l)
+    k = 37
+    print(k, get_list_k(data, 37))
 
 
 if __name__ == "__main__":
